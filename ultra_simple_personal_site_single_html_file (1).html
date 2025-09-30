@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Contact</title>
+  <meta name="description" content="Minimal personal landing page." />
+  <style>
+    :root{
+      --bg: #0f1115;
+      --card: #151823;
+      --text: #e6e8ef;
+      --muted: #a7adbd;
+      --accent: #7aa2f7;
+      --ring: rgba(122,162,247,0.4);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1000px 800px at 50% -20%, #1b2030 0%, var(--bg) 60%);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .wrap{ text-align: center; padding: 2rem; }
+
+    .name{
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      margin: 0 0 1rem;
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+    }
+    .name:hover{ color: #fff; }
+    .name:after{
+      content: "click";
+      position: absolute;
+      right: -3.5rem;
+      top: 50%; transform: translateY(-50%);
+      font-size: 0.85rem; color: var(--muted);
+      opacity: .7;
+    }
+
+    .tagline{ color: var(--muted); margin: 0 0 2rem; font-size: clamp(1rem, 2.5vw, 1.25rem); }
+
+    dialog#contact{
+      border: none; border-radius: 16px; padding: 0; overflow: hidden;
+      background: color-mix(in oklab, var(--card), black 5%);
+      color: var(--text);
+      box-shadow: 0 10px 30px rgba(0,0,0,.4), 0 0 0 1px rgba(255,255,255,.04);
+      max-width: 520px; width: calc(100% - 2rem);
+    }
+    @supports not (color: color-mix(in oklab, white, black)){
+      dialog#contact{ background: var(--card); }
+    }
+    .contact-head{
+      padding: 1.25rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,.06);
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent);
+    }
+    .contact-title{ margin: 0; font-size: 1.1rem; letter-spacing: 0.02em; }
+    .xbtn{
+      all: unset; cursor: pointer; padding: .35rem .55rem; border-radius: 10px;
+    }
+    .xbtn:focus-visible{ outline: 2px solid var(--ring); outline-offset: 2px; }
+
+    .contact-body{ padding: 1.25rem 1.5rem; display: grid; gap: .9rem; }
+    .row{ display: grid; grid-template-columns: 120px 1fr auto; gap: .75rem; align-items: center; }
+    .label{ color: var(--muted); font-size: .9rem; text-align: right; }
+    .val a{ color: var(--text); text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,.2); }
+    .val a:hover{ border-bottom-color: var(--accent); }
+    .copy{
+      all: unset; cursor: pointer; font-size: .85rem; color: var(--accent);
+      padding: .25rem .5rem; border-radius: 8px; transition: background .15s;
+    }
+    .copy:hover{ background: rgba(122,162,247,.08); }
+
+    .links{ display: flex; gap: .75rem; flex-wrap: wrap; padding-top: .5rem; }
+    .pill{
+      display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .75rem; border-radius: 999px;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06);
+    }
+    .pill a{ color: var(--text); text-decoration: none; }
+    .pill:focus-within{ outline: 2px solid var(--ring); outline-offset: 2px; }
+
+    footer{ position: fixed; bottom: .9rem; left: 0; right: 0; text-align: center; color: var(--muted); font-size: .85rem; }
+    .sr-only{ position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <!-- Edit your name here -->
+    <h1 class="name" id="openContact" tabindex="0" aria-haspopup="dialog" aria-controls="contact" title="Click to view contact">Your Name</h1>
+    <p class="tagline">Designer / Illustrator — San Francisco</p>
+
+    <dialog id="contact" aria-labelledby="ctitle">
+      <div class="contact-head">
+        <h2 id="ctitle" class="contact-title">Contact</h2>
+        <button class="xbtn" aria-label="Close" id="closeContact">✕</button>
+      </div>
+      <div class="contact-body">
+        <div class="row">
+          <div class="label">Email</div>
+          <div class="val"><a href="mailto:hello@example.com">hello@example.com</a></div>
+          <button class="copy" data-copy="hello@example.com" aria-live="polite">Copy</button>
+        </div>
+        <div class="row">
+          <div class="label">Instagram</div>
+          <div class="val"><a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">@yourhandle</a></div>
+          <button class="copy" data-copy="https://instagram.com/yourhandle">Copy</button>
+        </div>
+        <div class="row">
+          <div class="label">Portfolio</div>
+          <div class="val"><a href="https://your-portfolio.com" target="_blank" rel="noopener">your-portfolio.com</a></div>
+          <button class="copy" data-copy="https://your-portfolio.com">Copy</button>
+        </div>
+        <div class="links" aria-label="Other links">
+          <span class="pill"><a href="https://linkedin.com/in/yourname" target="_blank" rel="noopener">LinkedIn</a></span>
+          <span class="pill"><a href="https://x.com/yourname" target="_blank" rel="noopener">X/Twitter</a></span>
+          <span class="pill"><a href="https://github.com/yourname" target="_blank" rel="noopener">GitHub</a></span>
+        </div>
+      </div>
+    </dialog>
+  </main>
+
+  <footer>
+    <span class="sr-only">Keyboard tip: press Enter to open the dialog. Press Esc to close.</span>
+    <small>© <span id="year"></span> Your Name</small>
+  </footer>
+
+  <script>
+    const nameBtn = document.getElementById('openContact');
+    const dlg = document.getElementById('contact');
+    const closeBtn = document.getElementById('closeContact');
+
+    // Open on click or Enter/Space
+    function openDialog(){
+      dlg.showModal();
+      // focus first actionable thing
+      closeBtn.focus();
+    }
+    nameBtn.addEventListener('click', openDialog);
+    nameBtn.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openDialog(); }
+    });
+
+    // Close
+    function closeDialog(){ dlg.close(); nameBtn.focus(); }
+    closeBtn.addEventListener('click', closeDialog);
+    dlg.addEventListener('cancel', (e)=>{ /* allow Esc */ });
+
+    // Copy buttons
+    document.querySelectorAll('.copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const v = btn.getAttribute('data-copy');
+        try {
+          await navigator.clipboard.writeText(v);
+          btn.textContent = 'Copied!';
+          setTimeout(()=> btn.textContent = 'Copy', 1200);
+        } catch (err) {
+          btn.textContent = 'Press ⌘/Ctrl+C';
+          setTimeout(()=> btn.textContent = 'Copy', 1500);
+        }
+      });
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
